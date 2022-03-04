@@ -38,7 +38,7 @@ export const theme = createTheme({
         root: {
           height: 56,
           fontSize: 14,
-          fontWeight: 300,
+          fontWeight: 400,
           border: '1px solid #2279D6',
           color: '#fff',
           '&.Mui-focused': {
