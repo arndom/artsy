@@ -31,4 +31,21 @@ export const theme = createTheme({
       default: '#000000',
     },
   },
+
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          height: 56,
+          fontSize: 14,
+          fontWeight: 300,
+          border: '1px solid #2279D6',
+          color: '#fff',
+          '&.Mui-focused': {
+            border: 'none',
+          },
+        },
+      },
+    },
+  },
 });

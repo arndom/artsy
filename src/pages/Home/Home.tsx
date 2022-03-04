@@ -1,8 +1,13 @@
 import { Button, Grid, Typography } from '@mui/material';
 import { Paint } from '../../assets/svgs/Paint/Paint';
+import { useNavigate } from 'react-router-dom';
+
 import { styles } from './styles';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const navigateToCreate = () => navigate('/create');
+
   return (
     <Grid container sx={styles.landing}>
       <Grid container sx={styles.header}>
@@ -13,7 +18,7 @@ const Home = () => {
             </Typography>
             Transform your words into art and mint as an NFT
           </Typography>
-          <Button variant="contained" sx={styles.btn}>
+          <Button variant="contained" sx={styles.btn} onClick={navigateToCreate}>
             Create
           </Button>
         </Grid>
