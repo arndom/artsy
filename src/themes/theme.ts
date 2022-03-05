@@ -47,5 +47,25 @@ export const theme = createTheme({
         },
       },
     },
+
+    MuiButton: {
+      styleOverrides: {
+        contained: {
+          height: 46,
+          fontSize: '.85rem',
+          fontWeight: 400,
+        },
+
+        outlined: {
+          height: 46,
+          fontSize: '.85rem',
+          fontWeight: 400,
+          '& .MuiSvgIcon-root': {
+            width: 18,
+            height: 18,
+          },
+        },
+      },
+    },
   },
 });
