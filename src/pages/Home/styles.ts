@@ -63,5 +63,6 @@ export const styles = {
     borderRadius: 30,
     fontSize: '1rem ',
     textTransform: 'uppercase',
+    fontWeight: 500,
   },
 };
