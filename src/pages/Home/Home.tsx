@@ -16,7 +16,7 @@ const Home = () => {
             <Typography component="span" variant="h2" sx={styles.mainText}>
               Artsy:{' '}
             </Typography>
-            Transform your words into art and mint as an NFT
+            AI generated art from simple voice prompts
           </Typography>
           <Button variant="contained" sx={styles.btn} onClick={navigateToCreate}>
             Create
