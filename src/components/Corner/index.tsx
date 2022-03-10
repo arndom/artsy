@@ -4,7 +4,7 @@ const Corner = () => {
   return (
     <IconButton
       target="_blank"
-      href="http://github.com/arndom/100Days-Companion"
+      href="http://github.com/arndom/artsy"
       sx={{ display: 'block', zIndex: 1, height: '45px' }}
       disableRipple
     >
