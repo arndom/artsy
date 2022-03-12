@@ -30,8 +30,8 @@ export const styles = {
   },
 
   modalContent: {
-    height: 100,
-    width: 200,
+    width: 330,
+    py: 3,
     backgroundColor: 'primary.main',
     display: 'grid',
     placeItems: 'center',
