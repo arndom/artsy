@@ -37,4 +37,24 @@ export const styles = {
     placeItems: 'center',
     borderRadius: 4,
   },
+
+  audioBoxContainer: {
+    display: 'grid',
+    placeItems: 'center',
+  },
+
+  audioControls: {
+    display: 'flex',
+  },
+
+  audioControl: {
+    backgroundColor: '#fff',
+    marginRight: 2,
+    '&:hover': {
+      backgroundColor: '#fff',
+    },
+    '&.Mui-disabled': {
+      backgroundColor: 'transparent',
+    },
+  },
 };

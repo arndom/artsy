@@ -15,18 +15,12 @@ const useRecorder = () => {
     }
 
     // Manage recorder state.
-    if (isRecording) {
-      recorder.start();
-    } else {
-      recorder.stop();
-    }
+    if (isRecording) recorder.start();
+    if (!isRecording) recorder.stop();
 
     // Obtain the audio when ready.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleData = (e: any) => {
-      setAudioURL(URL.createObjectURL(e.data));
-      console.log(e.data);
-    };
+    const handleData = (e: any) => setAudioURL(URL.createObjectURL(e.data));
 
     recorder.addEventListener('dataavailable', handleData);
 
@@ -35,10 +29,12 @@ const useRecorder = () => {
 
   const startRecording = () => setIsRecording(true);
   const stopRecording = () => setIsRecording(false);
+  const resetAudio = () => setAudioURL('');
 
   return {
     audioURL: audioURL,
     isRecording: isRecording,
+    resetAudio: resetAudio,
     startRecording: startRecording,
     stopRecording: stopRecording,
   };

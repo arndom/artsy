@@ -1,5 +1,5 @@
-import { ContentCopy, Download, FiberManualRecord, Mic, Stop } from '@mui/icons-material';
-import { Box, Button, Grid, IconButton, Modal, OutlinedInput, Typography } from '@mui/material';
+import { Check, ContentCopy, Download, FiberManualRecord, Mic, Refresh, Stop } from '@mui/icons-material';
+import { Box, Button, ButtonGroup, Grid, IconButton, Modal, OutlinedInput, Typography } from '@mui/material';
 import { useState } from 'react';
 import placeholder from '../../assets/images/placeholder.png';
 import { Wave } from '../../assets/svgs/Wave/Wave';
@@ -13,8 +13,8 @@ interface IModal {
 }
 
 const AudioModal = ({ open, handleClose }: IModal) => {
-  const { audioURL, isRecording, startRecording, stopRecording } = useRecorder();
-  console.log(audioURL.length);
+  const { audioURL, resetAudio, isRecording, startRecording, stopRecording } = useRecorder();
+  console.log(audioURL, isRecording);
 
   return (
     <Modal open={open} onClose={handleClose} sx={styles.modalContainer}>
@@ -25,41 +25,37 @@ const AudioModal = ({ open, handleClose }: IModal) => {
 
         <Box>
           {audioURL.length === 0 && (isRecording ? <Wave live /> : <Wave />)}
-          {audioURL.length > 0 && <audio src={audioURL} controls />}
+          {audioURL.length > 0 && (
+            <Box width={200} height={150} sx={styles.audioBoxContainer}>
+              <audio src={audioURL} controls style={{ width: '100%' }} />
+            </Box>
+          )}
         </Box>
 
-        <Box
-          sx={{
-            display: 'flex',
-          }}
-        >
-          <IconButton
-            onClick={startRecording}
-            disabled={isRecording}
-            sx={{
-              backgroundColor: '#fff',
-              marginRight: 2,
-              '&:hover': {
-                backgroundColor: '#fff',
-              },
-            }}
-          >
-            <FiberManualRecord color="secondary" />
-          </IconButton>
+        <Box sx={styles.audioControls}>
+          {audioURL.length === 0 && (
+            <ButtonGroup>
+              <IconButton onClick={startRecording} disabled={isRecording} sx={styles.audioControl}>
+                <FiberManualRecord color="secondary" />
+              </IconButton>
 
-          <IconButton
-            onClick={stopRecording}
-            disabled={!isRecording}
-            sx={{
-              backgroundColor: '#fff',
-              marginRight: 2,
-              '&:hover': {
-                backgroundColor: '#fff',
-              },
-            }}
-          >
-            <Stop color="secondary" />
-          </IconButton>
+              <IconButton onClick={stopRecording} disabled={!isRecording} sx={styles.audioControl}>
+                <Stop color="secondary" />
+              </IconButton>
+            </ButtonGroup>
+          )}
+
+          {audioURL.length !== 0 && (
+            <ButtonGroup>
+              <IconButton onClick={resetAudio} sx={styles.audioControl}>
+                <Refresh color="secondary" />
+              </IconButton>
+
+              <IconButton onClick={resetAudio} sx={styles.audioControl}>
+                <Check color="secondary" />
+              </IconButton>
+            </ButtonGroup>
+          )}
         </Box>
       </Box>
     </Modal>
