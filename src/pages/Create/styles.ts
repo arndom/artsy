@@ -24,37 +24,17 @@ export const styles = {
     mb: 2,
   },
 
-  modalContainer: {
-    display: 'grid',
-    placeItems: 'center',
+  mic: {
+    color: 'primary.main',
+    backgroundColor: 'rgba(34, 121, 214, 0.2)',
   },
 
-  modalContent: {
-    width: 330,
-    py: 3,
-    backgroundColor: 'primary.main',
-    display: 'grid',
-    placeItems: 'center',
-    borderRadius: 4,
+  submit: {
+    mr: 1,
   },
 
-  audioBoxContainer: {
-    display: 'grid',
-    placeItems: 'center',
-  },
-
-  audioControls: {
-    display: 'flex',
-  },
-
-  audioControl: {
-    backgroundColor: '#fff',
-    marginRight: 2,
-    '&:hover': {
-      backgroundColor: '#fff',
-    },
-    '&.Mui-disabled': {
-      backgroundColor: 'transparent',
-    },
+  copy: {
+    mr: 2,
+    mb: 2,
   },
 };
