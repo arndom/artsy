@@ -5,6 +5,9 @@ const useRecorder = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState<MediaRecorder | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [audioBlob, setAudioBlob] = useState<any[]>([]);
+
   useEffect(() => {
     // Lazily obtain recorder first time we're recording.
     if (recorder === null) {
@@ -20,7 +23,12 @@ const useRecorder = () => {
 
     // Obtain the audio when ready.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleData = (e: any) => setAudioURL(URL.createObjectURL(e.data));
+    const handleData = (e: any) => {
+      setAudioURL(URL.createObjectURL(e.data));
+      const audio = [];
+      audio.push(e.data);
+      setAudioBlob(audio);
+    };
 
     recorder.addEventListener('dataavailable', handleData);
 
@@ -29,10 +37,14 @@ const useRecorder = () => {
 
   const startRecording = () => setIsRecording(true);
   const stopRecording = () => setIsRecording(false);
-  const resetAudio = () => setAudioURL('');
+  const resetAudio = () => {
+    setAudioURL('');
+    setAudioBlob([]);
+  };
 
   return {
     audioURL: audioURL,
+    audioBlob: audioBlob,
     isRecording: isRecording,
     resetAudio: resetAudio,
     startRecording: startRecording,
