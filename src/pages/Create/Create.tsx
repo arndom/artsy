@@ -2,7 +2,7 @@ import { ContentCopy, Download, Mic } from '@mui/icons-material';
 import { Box, Button, Grid, IconButton, OutlinedInput, Typography } from '@mui/material';
 import { useState } from 'react';
 import placeholder from '../../assets/images/placeholder.png';
-import AudioModal from '../../components/AudioModal/AudioModal';
+import { AudioModal } from '../../components';
 
 import { styles } from './styles';
 
@@ -17,7 +17,7 @@ const Create = () => {
 
   return (
     <Grid container sx={styles.container}>
-      <AudioModal open={modalOpen} handleClose={handleModalClose} />
+      <AudioModal open={modalOpen} handleClose={handleModalClose} setText={setText} />
       <Grid container>
         <Grid item xs={12} md={6} mb={4} pr={4}>
           <Typography variant="h5">Input</Typography>
@@ -31,7 +31,7 @@ const Create = () => {
               color="primary"
               endAdornment={
                 <IconButton onClick={handleModalOpen} sx={styles.mic}>
-                  <Mic color="primary" />
+                  <Mic color="secondary" />
                 </IconButton>
               }
             />

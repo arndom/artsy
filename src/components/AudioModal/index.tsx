@@ -10,11 +10,12 @@ import { styles } from './styles';
 interface IModal {
   open: boolean;
   handleClose: () => void;
+  setText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const API_KEY = process.env.REACT_APP_DEEPGRAM_API_KEY;
 
-const AudioModal = ({ open, handleClose }: IModal) => {
+const AudioModal = ({ open, handleClose, setText }: IModal) => {
   const { audioURL, audioBlob, resetAudio, isRecording, startRecording, stopRecording } = useRecorder();
   const [transcribing, setTranscribing] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -50,14 +51,26 @@ const AudioModal = ({ open, handleClose }: IModal) => {
       });
   };
 
+  const handleModalClose = () => {
+    stopRecording();
+    handleClose();
+  };
+
   useEffect(() => {
     if (audioURL === '') {
       setTranscript('');
     }
   }, [audioURL]);
 
+  const acceptText = () => {
+    setText(transcript);
+    setTranscript('');
+    resetAudio();
+    handleClose();
+  };
+
   return (
-    <Modal open={open} onClose={handleClose} sx={styles.modalContainer}>
+    <Modal open={open} onClose={handleModalClose} sx={styles.modalContainer}>
       <Box sx={styles.modalContent}>
         <Backdrop open={transcribing} sx={styles.backdrop}>
           <CircularProgress color="inherit" />
@@ -113,7 +126,7 @@ const AudioModal = ({ open, handleClose }: IModal) => {
           )}
 
           {!transcribing && transcript !== '' && (
-            <IconButton onClick={() => alert('done')} sx={styles.audioControl}>
+            <IconButton onClick={acceptText} sx={styles.audioControl}>
               <Check color="secondary" />
             </IconButton>
           )}
