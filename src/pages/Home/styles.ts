@@ -4,7 +4,7 @@ export const styles = {
   landing: {
     padding: theme.spacing(0, 12, 2),
     marginTop: -12,
-    height: 'calc(100vh - 96px)',
+    height: 'calc(100vh - calc(96px + calc(20.57px * 1.4)) + 96px)', //nav is 96px, foot is 20.57px
 
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(0, 6, 2),

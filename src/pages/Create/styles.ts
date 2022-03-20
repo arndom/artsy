@@ -8,6 +8,7 @@ export const styles = {
 
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(0, 6, 2),
+      height: 'max-content',
     },
 
     [theme.breakpoints.down('sm')]: {
@@ -36,5 +37,18 @@ export const styles = {
   copy: {
     mr: 2,
     mb: 2,
+  },
+
+  images: {
+    display: 'flex',
+    gap: 5,
+
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 3,
+    },
   },
 };

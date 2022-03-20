@@ -1,19 +1,52 @@
-import { ContentCopy, Download, Mic } from '@mui/icons-material';
+import { Mic } from '@mui/icons-material';
 import { Box, Button, Grid, IconButton, OutlinedInput, Typography } from '@mui/material';
+import axios, { AxiosRequestConfig } from 'axios';
 import { useState } from 'react';
-import placeholder from '../../assets/images/placeholder.png';
-import { AudioModal } from '../../components';
+import placeholder2 from '../../assets/images/placeholder2.png';
+import placeholder3 from '../../assets/images/placeholder3.png';
+import { AudioModal, DisplayImage } from '../../components';
 
 import { styles } from './styles';
 
+const API_KEY = process.env.REACT_APP_HOTPOT_API_KEY;
+
 const Create = () => {
-  const [text, setText] = useState('matte painting of a whale in the sea');
+  const [text, setText] = useState('a silhouetted figure with a hand raised');
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value);
   const handleClear = () => setText('');
 
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
+
+  const images = [placeholder2, placeholder3];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const transform = async () => {
+    const data = new FormData();
+    data.append('inputText', text);
+    data.append('outputWidth', '256');
+
+    // axios also defines as any...so deal with it typescript
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const config: AxiosRequestConfig<any> = {
+      method: 'post',
+      url: 'https://api.hotpot.ai/make-art',
+      headers: {
+        Authorization: `${API_KEY}`,
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        const data = response.data;
+        console.log(JSON.stringify(data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Grid container sx={styles.container}>
@@ -50,25 +83,10 @@ const Create = () => {
         <Grid item xs={12} md={6}>
           <Typography variant="h5">Output</Typography>
 
-          <Box mt={3}>
-            <img src={placeholder} alt="placeholder" style={{ width: '100%' }} />
-          </Box>
-
-          <Box mt={3}>
-            <Button sx={styles.copy} variant="outlined">
-              <ContentCopy sx={{ mr: 1 }} />
-              Share
-            </Button>
-            <Button
-              sx={{
-                mr: 2,
-                mb: 2,
-              }}
-              variant="outlined"
-            >
-              <Download sx={{ mr: 1 }} />
-              Download
-            </Button>
+          <Box sx={styles.images}>
+            {images.map((image, i) => (
+              <DisplayImage key={i} image={image} />
+            ))}
           </Box>
         </Grid>
       </Grid>
