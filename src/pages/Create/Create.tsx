@@ -31,7 +31,7 @@ const Create = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const config: AxiosRequestConfig<any> = {
       method: 'post',
-      url: 'https://api.hotpot.ai/make-art',
+      url: '/transform/make-art',
       headers: {
         Authorization: `${API_KEY}`,
       },
@@ -71,7 +71,7 @@ const Create = () => {
           </Box>
 
           <Box mt={3}>
-            <Button sx={styles.submit} variant="contained">
+            <Button sx={styles.submit} variant="contained" onClick={transform}>
               Submit
             </Button>
             <Button variant="outlined" onClick={handleClear}>
@@ -85,7 +85,7 @@ const Create = () => {
 
           <Box sx={styles.images}>
             {images.map((image, i) => (
-              <DisplayImage key={i} image={image} />
+              <DisplayImage key={i} image={'/image/RX3QBreXVYERfVJtJzGVU6.png'} />
             ))}
           </Box>
         </Grid>
