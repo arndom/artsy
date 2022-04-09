@@ -13,7 +13,9 @@
 ---
 
 ### About Artsy 🎨
-Artsy is a fun app that allows you to record audio and use the transcribed data to generate art...well, that was the plan but some issues occurred down the line during the art generation. The idea was to use public ML models to drive this process which would have yielded some beautiful results, i.e: 
+Artsy is a fun app that allows you to record audio and use the transcribed data to generate art...
+
+Well, that was the plan but some issues occurred down the line during the art generation. The idea was to use public ML models to drive this process which would have yielded some beautiful results, i.e: 
 _**matte painting of a whale in the sea**_, generated [@pixray](https://replicate.com/pixray/text2image)
 
 ![1](https://user-images.githubusercontent.com/40564798/162583694-ccda08b4-de2f-49cf-aa90-6a3d602fb172.png)
