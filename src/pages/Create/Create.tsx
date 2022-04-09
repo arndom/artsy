@@ -1,8 +1,8 @@
 import { Mic } from '@mui/icons-material';
 import { Box, Button, Grid, IconButton, OutlinedInput, Typography } from '@mui/material';
 import { useState } from 'react';
-import placeholder1 from '../../assets/images/placeholder1.png';
-import placeholder2 from '../../assets/images/placeholder2.png';
+import pixray from '../../assets/images/pixray.png';
+import hotpot from '../../assets/images/hotpot.png';
 import { AudioModal, DisplayImage, Loader, RollModal } from '../../components';
 
 import { styles } from './styles';
@@ -16,7 +16,7 @@ const Create = () => {
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
 
-  const [images, setImages] = useState([placeholder2, placeholder1]);
+  const [images, setImages] = useState([hotpot, pixray]);
 
   const [loading, setLoading] = useState(false);
   const [rollModal, setRollModal] = useState(false);
@@ -66,7 +66,7 @@ const Create = () => {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Typography variant="h5">Output</Typography>
+          <Typography variant="h5">Outputs</Typography>
 
           <Loader open={loading} />
 
