@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 import { styles } from './styles';
 
-interface IModal {
+interface AudioModalProps {
   open: boolean;
   handleClose: () => void;
   setText: React.Dispatch<React.SetStateAction<string>>;
@@ -15,7 +15,7 @@ interface IModal {
 
 const API_KEY = process.env.REACT_APP_DEEPGRAM_API_KEY;
 
-const AudioModal = ({ open, handleClose, setText }: IModal) => {
+const AudioModal = ({ open, handleClose, setText }: AudioModalProps) => {
   const { audioURL, audioBlob, resetAudio, isRecording, startRecording, stopRecording } = useRecorder();
   const [transcribing, setTranscribing] = useState(false);
   const [transcript, setTranscript] = useState('');

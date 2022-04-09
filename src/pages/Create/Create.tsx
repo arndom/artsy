@@ -3,7 +3,7 @@ import { Box, Button, Grid, IconButton, OutlinedInput, Typography } from '@mui/m
 import { useState } from 'react';
 import placeholder1 from '../../assets/images/placeholder1.png';
 import placeholder2 from '../../assets/images/placeholder2.png';
-import { AudioModal, DisplayImage, Loader } from '../../components';
+import { AudioModal, DisplayImage, Loader, RollModal } from '../../components';
 
 import { styles } from './styles';
 
@@ -19,18 +19,23 @@ const Create = () => {
   const [images, setImages] = useState([placeholder2, placeholder1]);
 
   const [loading, setLoading] = useState(false);
+  const [rollModal, setRollModal] = useState(false);
+  const handleRollOpen = () => setRollModal(true);
+  const handleRollClose = () => setRollModal(false);
 
   const transform = async () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setImages(['']);
+      handleRollOpen();
     }, 2000);
   };
 
   return (
     <Grid container sx={styles.container}>
       <AudioModal open={modalOpen} handleClose={handleModalClose} setText={setText} />
+      <RollModal open={rollModal} handleClose={handleRollClose} />
       <Grid container columnSpacing={5}>
         <Grid item xs={12} md={6} mb={4}>
           <Typography variant="h5">Input</Typography>
