@@ -11,7 +11,19 @@ const DisplayImage = ({ image }: IImage) => {
   return (
     <Box>
       <Box mt={3}>
-        <img src={image} alt="placeholder" />
+        {image === '' ? (
+          <Box width="100%">
+            <iframe
+              allow="autoplay"
+              frameBorder="0"
+              height="256"
+              src="https://shattereddisk.github.io/rickroll/rickroll.mp4"
+              width="100%"
+            ></iframe>
+          </Box>
+        ) : (
+          <img src={image} alt="placeholder" />
+        )}
       </Box>
 
       <Box mt={3}>

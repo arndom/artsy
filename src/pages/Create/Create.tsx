@@ -1,14 +1,11 @@
 import { Mic } from '@mui/icons-material';
 import { Box, Button, Grid, IconButton, OutlinedInput, Typography } from '@mui/material';
-import axios, { AxiosRequestConfig } from 'axios';
 import { useState } from 'react';
+import placeholder1 from '../../assets/images/placeholder1.png';
 import placeholder2 from '../../assets/images/placeholder2.png';
-import placeholder3 from '../../assets/images/placeholder3.png';
-import { AudioModal, DisplayImage } from '../../components';
+import { AudioModal, DisplayImage, Loader } from '../../components';
 
 import { styles } from './styles';
-
-const API_KEY = process.env.REACT_APP_HOTPOT_API_KEY;
 
 const Create = () => {
   const [text, setText] = useState('a silhouetted figure with a hand raised');
@@ -19,40 +16,23 @@ const Create = () => {
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
 
-  const images = [placeholder2, placeholder3];
+  const [images, setImages] = useState([placeholder2, placeholder1]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [loading, setLoading] = useState(false);
+
   const transform = async () => {
-    const data = new FormData();
-    data.append('inputText', text);
-    data.append('outputWidth', '256');
-
-    // axios also defines as any...so deal with it typescript
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const config: AxiosRequestConfig<any> = {
-      method: 'post',
-      url: '/transform/make-art',
-      headers: {
-        Authorization: `${API_KEY}`,
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-        const data = response.data;
-        console.log(JSON.stringify(data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setImages(['']);
+    }, 2000);
   };
 
   return (
     <Grid container sx={styles.container}>
       <AudioModal open={modalOpen} handleClose={handleModalClose} setText={setText} />
-      <Grid container>
-        <Grid item xs={12} md={6} mb={4} pr={4}>
+      <Grid container columnSpacing={5}>
+        <Grid item xs={12} md={6} mb={4}>
           <Typography variant="h5">Input</Typography>
 
           <Box mt={3}>
@@ -83,9 +63,11 @@ const Create = () => {
         <Grid item xs={12} md={6}>
           <Typography variant="h5">Output</Typography>
 
+          <Loader open={loading} />
+
           <Box sx={styles.images}>
             {images.map((image, i) => (
-              <DisplayImage key={i} image={'/image/RX3QBreXVYERfVJtJzGVU6.png'} />
+              <DisplayImage key={i} image={image} />
             ))}
           </Box>
         </Grid>

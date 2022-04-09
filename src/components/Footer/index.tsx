@@ -21,7 +21,7 @@ const Footer = () => {
       >
         Deepgram
       </Link>
-      and
+      ,
       <Link
         mx={1}
         sx={{ cursor: 'pointer' }}
@@ -31,6 +31,17 @@ const Footer = () => {
         rel="noreferrer"
       >
         Hotpot AI
+      </Link>
+      &
+      <Link
+        mx={1}
+        sx={{ cursor: 'pointer' }}
+        href="https://replicate.com/pixray/text2image"
+        target="_blank"
+        underline="hover"
+        rel="noreferrer"
+      >
+        Pixray
       </Link>
     </Typography>
   );
