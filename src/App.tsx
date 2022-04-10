@@ -3,7 +3,6 @@ import { theme } from './themes/theme';
 import { CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { appRoutes, AppRouteType } from './routes/app';
-import NotFound from './pages/NotFound/NotFound';
 import { Footer, Navbar } from './components';
 
 const renderRoute = (route: AppRouteType, index: number): JSX.Element => {
@@ -16,10 +15,7 @@ const App = (): JSX.Element => {
       <Router>
         <CssBaseline />
         <Navbar />
-        <Routes>
-          {appRoutes.map((route, index) => renderRoute(route, index))}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Routes>{appRoutes.map((route, index) => renderRoute(route, index))}</Routes>
         <Footer />
       </Router>
     </ThemeProvider>

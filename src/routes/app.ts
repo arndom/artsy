@@ -1,5 +1,4 @@
-import Create from '../pages/Create/Create';
-import Home from '../pages/Home/Home';
+import { Create, Home, NotFound } from '../pages';
 
 export interface AppRouteType {
   to: string;
@@ -14,5 +13,9 @@ export const appRoutes: AppRouteType[] = [
   {
     to: '/create',
     element: Create,
+  },
+  {
+    to: '*',
+    element: NotFound,
   },
 ];
